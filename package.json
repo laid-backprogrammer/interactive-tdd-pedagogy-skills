@@ -6,6 +6,8 @@
   "type": "module",
   "files": [
     ".claude-plugin/plugin.json",
+    "assets",
+    "docs",
     "skills",
     "scripts",
     "README.md",

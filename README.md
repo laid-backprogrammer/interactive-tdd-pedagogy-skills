@@ -1,114 +1,29 @@
-# Interactive TDD Pedagogy Skills
+# Interactive TDD Pedagogy
 
-A skill package for AI pair programming when the goal is not merely to make the
-agent write more code, but to help the developer regain control over what the
-code actually does.
+![AI pair programming harness](./assets/ai-pairing-harness.png)
 
-Modern models can produce hundreds or thousands of lines of code quickly. At the
-same time, product requirements keep changing, systems keep growing, and the old
-way of slowly hand-writing every line no longer matches the speed of AI-assisted
-development. The risk is that the codebase becomes a black box: the agent writes
-more, the developer understands less, and long-term ownership gets weaker.
+An agent skill for AI pair programming, project takeover, code-reading practice,
+and contract-gated TDD learning.
 
-`interactive-tdd-pedagogy` is built for the opposite direction. It uses AI pair
-programming to improve your ability to read, question, test, and take over code,
-especially when the project is unfamiliar, the language is unfamiliar, or the
-business behavior is unclear. The skill turns code takeover into a sequence of
-small behavior contracts, assertion-first reading, Socratic checkpoints, and
-contract-gated red-green-refactor loops.
+It helps you take over an unfamiliar codebase, even when the language or
+framework is also unfamiliar, by turning "AI explains the project" into a small
+loop of behavior contracts, assertions, predictions, red-green checks, and
+recorded learning.
 
-## Core View
+[中文说明](./docs/zh-CN.md)
 
-The essence of TDD is not that tests magically make code better. The essence is
-that tests force us to understand behavior: inputs, outputs, state changes,
-failure paths, and the expectations that the system must preserve. Only when we
-understand code behavior can we write, review, maintain, and change the code
-responsibly.
-
-As AI becomes better at generating code, our responsibility does not disappear.
-It becomes more important. LLMs are still probabilistic systems. They can help
-us move faster, but they cannot be the final owner of the project. The developer
-still has to know what behavior is expected, what has been proven, what remains
-uncertain, and how future changes can be made without losing control.
-
-This is where a harness matters. A harness aligns the agent with expected
-behavior, but it also aligns the developer with that same expectation. The point
-is not only "make the agent pass tests." The point is to create a shared,
-executable understanding of the system so that AI-assisted development increases
-project control instead of turning the project into an opaque dependency on the
-agent.
-
-## What This Skill Helps With
-
-- Quickly taking over an unfamiliar codebase through narrow behavior paths.
-- Reading tests backward from assertions to the business behavior they prove.
-- Learning a new language or framework while staying anchored to real project
-  behavior instead of abstract syntax trivia.
-- Using AI as a pair-programming coach that asks small questions instead of
-  dumping large explanations.
-- Building and maintaining a test harness that captures human expectations, not
-  just agent output.
-- Preventing AI-generated code from weakening your own code-reading ability and
-  project ownership.
-
-## Visual Model
-
-AI can increase delivery speed while quietly reducing ownership if the developer
-does not keep a live model of behavior.
-
-```mermaid
-flowchart LR
-  A["Product pressure"] --> B["AI generates more code"]
-  B --> C{"Do we understand the behavior?"}
-  C -- "No" --> D["Black-box codebase"]
-  D --> E["Harder review, debugging, and maintenance"]
-  C -- "Yes" --> F["Behavior harness"]
-  F --> G["Developer and agent share expectations"]
-  G --> H["Faster change with stronger control"]
-```
-
-The harness is not only for the agent. It is where the developer, the tests,
-and the agent meet around the same expectation.
-
-```mermaid
-flowchart TB
-  M["Mini Behavior Contract"] --> I["Inputs"]
-  M --> O["Outputs"]
-  M --> S["State changes"]
-  M --> F["Failure paths"]
-
-  I --> T["Proof test"]
-  O --> T
-  S --> T
-  F --> T
-
-  T --> A["Agent implementation"]
-  T --> D["Developer understanding"]
-  A --> R["Red / Green / Refactor"]
-  D --> R
-  R --> K["Maintained project control"]
-```
-
-The learning loop is intentionally small. The point is to build real reading
-ability, not to outsource the entire understanding process to the model.
-
-```mermaid
-flowchart LR
-  P["Pick one behavior path"] --> C["Write a tiny contract"]
-  C --> Q["Ask one prediction question"]
-  Q --> T["Read one assertion"]
-  T --> R["Run or design a Red"]
-  R --> G["Make the smallest Green"]
-  G --> L["Record what is proven and unknown"]
-  L --> P
-```
-
-## Install
+## Quickstart
 
 Install from GitHub with the skills installer:
 
 ```bash
 npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills
+```
+
+Then invoke the skill in your agent:
+
+```text
+$interactive-tdd-pedagogy
 ```
 
 You can also skip the interactive agent picker and target agents directly:
@@ -120,27 +35,131 @@ npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agen
 npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agent trae-cn --skill interactive-tdd-pedagogy -y
 ```
 
-Or link it locally into a specific agent:
+## What It Does
+
+This skill turns project onboarding into a guided AI pair-programming session.
+
+Instead of asking the agent to explain everything, it makes the agent:
+
+- choose one narrow behavior path;
+- write a tiny behavior contract;
+- trace one test assertion back to the code;
+- ask you one small prediction question;
+- use red-green-refactor only after the expected behavior is clear;
+- record what is proven, unknown, and worth reviewing later.
+
+The goal is not to let AI replace your understanding. The goal is to use AI to
+increase your code-reading ability and project control.
+
+## How It Works
+
+```mermaid
+flowchart LR
+  A["Pick one behavior path"] --> B["Mini Behavior Contract"]
+  B --> C["Read one assertion"]
+  C --> D["Predict the result"]
+  D --> E["Run or design a Red"]
+  E --> F["Make the smallest Green"]
+  F --> G["Record proven / unknown"]
+  G --> A
+```
+
+The core unit is a Mini Behavior Contract:
+
+```text
+When <input or trigger>
+the system should <observable output>
+and should change <state>
+because <business rule>
+```
+
+The agent is not allowed to jump straight into a large explanation or a large
+fix. It must keep the loop small enough that you can actually follow the
+behavior.
+
+## When To Use It
+
+Use this skill when you want to:
+
+- take over a new project quickly;
+- understand unfamiliar code with tests as the map;
+- learn a new language through real project behavior;
+- review AI-generated code without treating it as a black box;
+- turn a vague feature or bug into observable expectations;
+- build a harness that keeps both you and the agent aligned.
+
+## Why It Exists
+
+Modern models can generate code faster than most teams can review it. Product
+requirements keep moving, and "old-school manual coding everything line by line"
+does not match the speed of AI-assisted development.
+
+But if the agent writes more and the developer understands less, the project
+becomes a black box. That is not engineering ownership.
+
+The core view of this skill is:
+
+> TDD is valuable because tests force us to understand behavior: inputs,
+> outputs, state changes, failure paths, and preserved expectations. Only when
+> we understand behavior can we write and maintain code responsibly.
+
+A harness is not only for the agent. It aligns the agent with expected behavior,
+and it aligns the developer with the same expectation. That shared executable
+understanding is what lets AI-assisted development increase control instead of
+weakening it.
+
+## Visual Model
+
+```mermaid
+flowchart LR
+  P["Product pressure"] --> A["AI generates more code"]
+  A --> Q{"Behavior understood?"}
+  Q -- "No" --> B["Black-box codebase"]
+  B --> R["Harder review and maintenance"]
+  Q -- "Yes" --> H["Behavior harness"]
+  H --> C["Developer and agent share expectations"]
+  C --> O["Faster change with stronger control"]
+```
+
+```mermaid
+flowchart TB
+  M["Mini Behavior Contract"] --> I["Inputs"]
+  M --> O["Outputs"]
+  M --> S["State changes"]
+  M --> F["Failure paths"]
+  I --> T["Proof test"]
+  O --> T
+  S --> T
+  F --> T
+  T --> A["Agent implementation"]
+  T --> D["Developer understanding"]
+  A --> R["Red / Green / Refactor"]
+  D --> R
+  R --> K["Maintained project control"]
+```
+
+## Local Linking
+
+The `npx skills@latest add ...` installer is the recommended path for normal
+use. If you need deterministic local linking, use:
 
 ```bash
 npm run link:claude
 npm run link:codex
 ```
 
-The local linking script supports these targets:
+The local linking script supports:
 
 - `AGENT=claude` -> `~/.claude/skills`
 - `AGENT=codex` -> `${CODEX_HOME:-~/.codex}/skills`
 - `AGENT=agents` -> `~/.agents/skills`
 - `AGENT=custom SKILLS_DIR=/path/to/skills` -> custom skills directory
 
-The `npx skills@latest add ...` installer remains the recommended path for
-multi-agent installs. The local script is a deterministic fallback when you
-want to link directly into a known skills directory.
+## Included Skill
 
-## Included Skills
-
-- [`interactive-tdd-pedagogy`](./skills/engineering/interactive-tdd-pedagogy/SKILL.md) - A project takeover and code-reading training system for unfamiliar codebases, using Mini Behavior Contracts, Socratic checkpoints, and gated red-green-refactor loops.
+- [`interactive-tdd-pedagogy`](./skills/engineering/interactive-tdd-pedagogy/SKILL.md)
+  - project takeover and code-reading training through Mini Behavior Contracts,
+    Socratic checkpoints, and gated red-green-refactor loops.
 
 ## Development
 
@@ -150,8 +169,15 @@ List packaged skills:
 npm run list:skills
 ```
 
-Preview the npm package contents:
+Preview the package contents:
 
 ```bash
 npm pack --dry-run
 ```
+
+## Acknowledgements
+
+The repository layout, installer-facing structure, and local linking script were
+informed by [mattpocock/skills](https://github.com/mattpocock/skills). Thanks to
+that project for providing a clear, practical reference for publishing agent
+skills as a GitHub-installable package.
