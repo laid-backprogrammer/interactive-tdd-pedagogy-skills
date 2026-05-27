@@ -10,11 +10,15 @@ Install from GitHub with the skills installer:
 npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills
 ```
 
-Or link it locally into Codex:
+Or link it locally into Claude Code:
 
 ```bash
-bash scripts/link-skills.sh
+npm run link:claude
 ```
+
+This links the packaged skill into Claude Code's default skill directory:
+`~/.claude/skills`. Set `CLAUDE_SKILLS_DIR` to test or deploy to a different
+directory.
 
 ## Included Skills
 

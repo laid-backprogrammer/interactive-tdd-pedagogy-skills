@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "list:skills": "bash scripts/list-skills.sh",
-    "link:codex": "bash scripts/link-skills.sh",
+    "link:claude": "bash scripts/link-skills.sh",
     "prepack": "bash scripts/list-skills.sh"
   },
   "keywords": [
