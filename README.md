@@ -41,7 +41,7 @@ npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agen
 We are witnessing an unprecedented leap in AI code-generation capabilities. Pressed by relentless product cycles and non-stop feature demands, "ancient manual coding"—writing every line from scratch—is no longer viable. We must develop with AI.
 
 However, **as AI writes code faster, our control over the codebase is being diluted.**
-If you let the agent write the code and you simply accept the outputs, the codebase rapidly becomes a dark, impenetrable black box. Your code-reading skills atrophy, and you become completely dependent on the AI. But remember: **LLMs, at their core, are probabilistic models. The only one truly responsible for the engineering project is you.**
+If you let the agent write the code and you simply accept the outputs, the codebase rapidly becomes a dark, impenetrable black box. Your code-reading skills atrophy, and you become completely dependent on the AI. But remember: **LLMs, at their core, are probabilistic models. The one truly responsible for the engineering project is you.**
 
 ### 2. The True Essence of TDD
 TDD (Test-Driven Development) is not about dogmatic rituals or high coverage percentages. **The true essence of TDD is using tests to force a rigorous, structured understanding of code behavior during development.**
