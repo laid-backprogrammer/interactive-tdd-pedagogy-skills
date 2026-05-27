@@ -13,7 +13,9 @@
   ],
   "scripts": {
     "list:skills": "bash scripts/list-skills.sh",
-    "link:claude": "bash scripts/link-skills.sh",
+    "link:skills": "bash scripts/link-skills.sh",
+    "link:claude": "AGENT=claude bash scripts/link-skills.sh",
+    "link:codex": "AGENT=codex bash scripts/link-skills.sh",
     "prepack": "bash scripts/list-skills.sh"
   },
   "keywords": [

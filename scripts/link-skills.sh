@@ -1,10 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Links all packaged skills to Claude Code's skill directory.
+# Links all packaged skills to an agent skills directory.
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DEST="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}"
+AGENT="${AGENT:-claude}"
+
+case "$AGENT" in
+  claude)
+    DEFAULT_DEST="$HOME/.claude/skills"
+    ;;
+  codex)
+    DEFAULT_DEST="${CODEX_HOME:-$HOME/.codex}/skills"
+    ;;
+  agents)
+    DEFAULT_DEST="$HOME/.agents/skills"
+    ;;
+  custom)
+    if [ -z "${SKILLS_DIR:-}" ]; then
+      echo "error: SKILLS_DIR is required when AGENT=custom." >&2
+      exit 1
+    fi
+    DEFAULT_DEST="$SKILLS_DIR"
+    ;;
+  *)
+    echo "error: unknown AGENT '$AGENT'. Use claude, codex, agents, or custom." >&2
+    exit 1
+    ;;
+esac
+
+DEST="${SKILLS_DIR:-$DEFAULT_DEST}"
 
 resolve_path() {
   if command -v realpath >/dev/null 2>&1; then
@@ -14,8 +39,8 @@ resolve_path() {
   fi
 }
 
-# If ~/.claude/skills is a symlink that resolves into this repo, per-skill
-# links would be written back into the repository. Detect that before linking.
+# If the destination is a symlink that resolves into this repo, per-skill links
+# would be written back into the repository. Detect that before linking.
 if [ -L "$DEST" ]; then
   resolved="$(resolve_path "$DEST")"
   case "$resolved" in
@@ -40,5 +65,5 @@ while IFS= read -r -d '' skill_md; do
   fi
 
   ln -sfn "$src" "$target"
-  echo "linked $name -> $src"
+  echo "linked $name -> $src in $DEST"
 done

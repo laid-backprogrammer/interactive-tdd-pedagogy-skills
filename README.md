@@ -10,15 +10,23 @@ Install from GitHub with the skills installer:
 npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills
 ```
 
-Or link it locally into Claude Code:
+Or link it locally into a specific agent:
 
 ```bash
 npm run link:claude
+npm run link:codex
 ```
 
-This links the packaged skill into Claude Code's default skill directory:
-`~/.claude/skills`. Set `CLAUDE_SKILLS_DIR` to test or deploy to a different
-directory.
+The local linking script supports these targets:
+
+- `AGENT=claude` -> `~/.claude/skills`
+- `AGENT=codex` -> `${CODEX_HOME:-~/.codex}/skills`
+- `AGENT=agents` -> `~/.agents/skills`
+- `AGENT=custom SKILLS_DIR=/path/to/skills` -> custom skills directory
+
+The `npx skills@latest add ...` installer remains the recommended path for
+multi-agent installs. The local script is a deterministic fallback when you
+want to link directly into a known skills directory.
 
 ## Included Skills
 
