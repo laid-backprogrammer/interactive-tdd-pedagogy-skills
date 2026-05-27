@@ -1,0 +1,28 @@
+{
+  "name": "interactive-tdd-pedagogy-skills",
+  "version": "0.1.0",
+  "description": "Agent skill for interactive TDD pedagogy and project takeover coaching.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    ".claude-plugin/plugin.json",
+    "skills",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "list:skills": "bash scripts/list-skills.sh",
+    "link:codex": "bash scripts/link-skills.sh",
+    "prepack": "bash scripts/list-skills.sh"
+  },
+  "keywords": [
+    "agent-skill",
+    "codex",
+    "tdd",
+    "pedagogy"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
