@@ -10,6 +10,15 @@ Install from GitHub with the skills installer:
 npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills
 ```
 
+You can also skip the interactive agent picker and target agents directly:
+
+```bash
+npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agent codex --skill interactive-tdd-pedagogy -y
+npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agent claude-code --skill interactive-tdd-pedagogy -y
+npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agent trae --skill interactive-tdd-pedagogy -y
+npx skills@latest add laid-backprogrammer/interactive-tdd-pedagogy-skills --agent trae-cn --skill interactive-tdd-pedagogy -y
+```
+
 Or link it locally into a specific agent:
 
 ```bash
